@@ -1,4 +1,4 @@
-#Feature Switches
+# Feature Switches
 
 Feature Switches is a utility library that enables feature switch management in your client code to drive behaviour and logic using HOCON configuration.
 
@@ -6,11 +6,11 @@ There are two types of feature switches that can be created.
 1. Boolean Switches
 2. DateTime Switches
 
-##Usage
+## Usage
 
 A context is defined as an object in HOCON which contains your feature switches.
 
-###Default Context
+### Default Context
 
 The default context is known as `switches.default` and can be defined in your HOCON .conf files as below:
 ``` HOCON
@@ -38,7 +38,7 @@ public class Main {
 }
 ```
 
-###Custom Context
+### Custom Context
 
 You can also logically separate your feature switches into logical parts by creating your own contexts:
 ```HOCON
