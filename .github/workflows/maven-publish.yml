@@ -6,7 +6,9 @@ name: Maven Package
 on:
   release:
     types: [created]
-  push
+  push:
+    branches:
+      - master
 
 jobs:
   build:
