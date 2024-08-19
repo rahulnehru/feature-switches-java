@@ -1,0 +1,4 @@
+jdk:
+  - amazon-corretto-19
+install:
+  - mvn clean install
