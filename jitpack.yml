@@ -1,4 +1,9 @@
 jdk:
-  - amazon-corretto-19
+  - openjdk21
+before_install:
+  - sdk install java 19.3.0-amzn
+  - sdk use java 19.3.0-amzn
+  - sdk install maven
+  - mvn -v
 install:
   - mvn clean install
