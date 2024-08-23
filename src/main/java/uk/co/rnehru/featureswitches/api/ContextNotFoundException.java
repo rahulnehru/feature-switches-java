@@ -1,4 +1,4 @@
-package api;
+package uk.co.rnehru.featureswitches.api;
 
 /**
  * Exception thrown when feature switches context could not be found

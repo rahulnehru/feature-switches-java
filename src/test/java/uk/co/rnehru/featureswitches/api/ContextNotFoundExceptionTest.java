@@ -1,4 +1,4 @@
-package api;
+package uk.co.rnehru.featureswitches.api;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

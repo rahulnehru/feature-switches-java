@@ -1,7 +1,8 @@
-package loader;
+package uk.co.rnehru.featureswitches.loader;
 
 import com.typesafe.config.ConfigValue;
 import org.junit.jupiter.api.Test;
+import uk.co.rnehru.featureswitches.loader.ConfigLoader;
 
 import java.util.Map;
 

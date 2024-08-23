@@ -1,4 +1,4 @@
-package loader;
+package uk.co.rnehru.featureswitches.loader;
 
 /**
  * Checked exception thrown when a context fails to load

@@ -1,13 +1,13 @@
-package api;
+package uk.co.rnehru.featureswitches.api;
 
-import model.Switch;
+import uk.co.rnehru.featureswitches.model.Switch;
 
 import java.util.Map;
 
 /**
  * Interface for interacting with a Switches context.
  */
-public interface Switches {
+interface Switches {
 
     /**
      * Get switch by name from default context.

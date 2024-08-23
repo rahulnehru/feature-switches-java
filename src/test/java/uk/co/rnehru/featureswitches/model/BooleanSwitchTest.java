@@ -1,6 +1,7 @@
-package model;
+package uk.co.rnehru.featureswitches.model;
 
 import org.junit.jupiter.api.Test;
+import uk.co.rnehru.featureswitches.model.BooleanSwitch;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

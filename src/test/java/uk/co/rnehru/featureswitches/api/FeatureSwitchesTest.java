@@ -1,11 +1,9 @@
-package api;
+package uk.co.rnehru.featureswitches.api;
 
-import model.BooleanSwitch;
+import uk.co.rnehru.featureswitches.model.BooleanSwitch;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
-
-import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
 

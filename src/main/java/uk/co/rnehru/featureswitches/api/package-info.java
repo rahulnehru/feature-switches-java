@@ -3,5 +3,5 @@
  * By default, `switches.default` will be your default context to add into your .conf file.
  */
 
-package api;
+package uk.co.rnehru.featureswitches.api;
 

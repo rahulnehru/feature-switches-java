@@ -1,10 +1,10 @@
-package loader;
+package uk.co.rnehru.featureswitches.loader;
 
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigValue;
-import model.BooleanSwitch;
-import model.DateTimeSwitch;
-import model.Switch;
+import uk.co.rnehru.featureswitches.model.BooleanSwitch;
+import uk.co.rnehru.featureswitches.model.DateTimeSwitch;
+import uk.co.rnehru.featureswitches.model.Switch;
 
 import java.time.ZonedDateTime;
 import java.util.HashMap;

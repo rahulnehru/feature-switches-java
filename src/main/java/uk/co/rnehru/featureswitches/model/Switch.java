@@ -1,4 +1,4 @@
-package model;
+package uk.co.rnehru.featureswitches.model;
 
 /**
  * A switch can be used to drive functionality in your code base.

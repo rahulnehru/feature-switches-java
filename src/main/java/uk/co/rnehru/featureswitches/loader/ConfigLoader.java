@@ -1,4 +1,4 @@
-package loader;
+package uk.co.rnehru.featureswitches.loader;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;

@@ -1,4 +1,4 @@
-package api;
+package uk.co.rnehru.featureswitches.api;
 
 /**
  * Runtime exception for when a switch cannot be found

@@ -1,7 +1,9 @@
-package loader;
+package uk.co.rnehru.featureswitches.loader;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import uk.co.rnehru.featureswitches.loader.Context;
+import uk.co.rnehru.featureswitches.loader.ContextLoadException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

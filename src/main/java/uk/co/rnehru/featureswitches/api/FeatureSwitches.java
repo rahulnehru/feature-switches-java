@@ -1,8 +1,8 @@
-package api;
+package uk.co.rnehru.featureswitches.api;
 
-import loader.Context;
-import loader.ContextLoadException;
-import model.Switch;
+import uk.co.rnehru.featureswitches.loader.Context;
+import uk.co.rnehru.featureswitches.loader.ContextLoadException;
+import uk.co.rnehru.featureswitches.model.Switch;
 
 
 import java.util.ArrayList;

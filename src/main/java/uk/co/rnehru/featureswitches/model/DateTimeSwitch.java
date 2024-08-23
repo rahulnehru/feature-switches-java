@@ -1,4 +1,4 @@
-package model;
+package uk.co.rnehru.featureswitches.model;
 
 import java.time.ZonedDateTime;
 import java.util.concurrent.atomic.AtomicBoolean;

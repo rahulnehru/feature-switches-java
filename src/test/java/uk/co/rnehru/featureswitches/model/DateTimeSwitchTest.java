@@ -1,6 +1,7 @@
-package model;
+package uk.co.rnehru.featureswitches.model;
 
 import org.junit.jupiter.api.Test;
+import uk.co.rnehru.featureswitches.model.DateTimeSwitch;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
