@@ -22,9 +22,6 @@ public class FeatureSwitchesTest {
     void getInstanceShouldReturnOnlySingleInstance() {
         FeatureSwitches g = FeatureSwitches.getInstance();
         assertEquals(f,g);
-        g.turnAllOff();
-        assertFalse(g.getSwitch("switchA").isOn());
-        f.turnAllOn();
         assertTrue(g.getSwitch("switchA").isOn());
     }
 
@@ -64,24 +61,6 @@ public class FeatureSwitchesTest {
     void getAllSwitchesShouldThrowExceptionIfContextNotFound() {
         Executable e = () -> f.getAllSwitches("switches.missingContext");
         assertThrows(ContextNotFoundException.class, e, "Could not find context [switches.missingContext]");
-    }
-
-    @Test
-    void turnAllOnOffShouldTurnOnAllSwitchesInDefaultContext() {
-        f.turnAllOn();
-        f.getAllSwitches().forEach((key, value) -> assertTrue(value.isOn()));
-
-        f.turnAllOff();
-        f.getAllSwitches().forEach((key, value) -> assertFalse(value.isOn()));
-    }
-
-    @Test
-    void turnAllOnOffShouldTurnOnAllSwitchesInContext() {
-        f.turnAllOn("switches.secondContext");
-        f.getAllSwitches("switches.secondContext").forEach((key, value) -> assertTrue(value.isOn()));
-
-        f.turnAllOff("switches.secondContext");
-        f.getAllSwitches("switches.secondContext").forEach((key, value) -> assertFalse(value.isOn()));
     }
 
 }

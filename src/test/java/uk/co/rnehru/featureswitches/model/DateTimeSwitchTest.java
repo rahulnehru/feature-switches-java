@@ -1,7 +1,8 @@
 package uk.co.rnehru.featureswitches.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.co.rnehru.featureswitches.model.DateTimeSwitch;
+import uk.co.rnehru.featureswitches.clock.TimeTravel;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,6 +12,11 @@ import java.time.ZonedDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DateTimeSwitchTest {
+
+    @BeforeEach
+    void setUp() {
+        TimeTravel.CLOCK.reset();
+    }
 
     private final ZonedDateTime timeInPast = ZonedDateTime.now().minusYears(1);
     private final ZonedDateTime timeInFuture = ZonedDateTime.now().plusYears(1);
@@ -28,17 +34,14 @@ public class DateTimeSwitchTest {
     }
 
     @Test
-    void turnOnWillChangeSwitchToBeOn() {
+    void isOnReturnsTrueIfSwitchDateIsRunningAndPassesActivationDateTime() throws InterruptedException {
         DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInFuture);
-        dateTimeSwitch.turnOn();
-        assertTrue(dateTimeSwitch.isOn());
-    }
-
-    @Test
-    void turnOffWillChangeSwitchToBeOff() {
-        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInPast);
-        dateTimeSwitch.turnOff();
         assertFalse(dateTimeSwitch.isOn());
+        TimeTravel.CLOCK.setTime(timeInFuture.minusSeconds(2), true);
+        assertFalse(dateTimeSwitch.isOn());
+        Thread.sleep(2000);
+        assertTrue(dateTimeSwitch.isOn());
+        TimeTravel.CLOCK.reset();
     }
 
     @Test
@@ -49,22 +52,5 @@ public class DateTimeSwitchTest {
         assertEquals(firstOfJan2020, actual);
     }
 
-    @Test
-    void resetShouldSetBackToInitialStateWhenInitialStateWasOff() {
-        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInFuture);
-        dateTimeSwitch.turnOn();
-        assertTrue(dateTimeSwitch.isOn());
-        dateTimeSwitch.reset();
-        assertFalse(dateTimeSwitch.isOn());
-    }
 
-    @Test
-    void resetShouldSetBackToInitialStateWhenInitialStateWasOn() {
-        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInPast);
-        dateTimeSwitch.turnOff();
-        assertFalse(dateTimeSwitch.isOn());
-        dateTimeSwitch.reset();
-        assertTrue(dateTimeSwitch.isOn());
-    }
-    
 }

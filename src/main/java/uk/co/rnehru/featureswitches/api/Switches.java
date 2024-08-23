@@ -42,31 +42,6 @@ interface Switches {
     Map<String, Switch> getAllSwitches(String context);
 
     /**
-     * Turn on all switches in default context
-     */
-    void turnAllOn();
-
-
-    /**
-     * Turn on all switches in named context
-     *
-     * @param context name of context
-     */
-    void turnAllOn(String context);
-
-    /**
-     * Turn off all switches in default context
-     */
-    void turnAllOff();
-
-    /**
-     * Turn off all switches in named context
-     *
-     * @param context name of context
-     */
-    void turnAllOff(String context);
-
-    /**
      * Re-evaluate all switches in default context based on conf file
      */
     void resetAll();

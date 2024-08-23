@@ -21,22 +21,31 @@ public final class BooleanSwitch implements Switch {
 
     private final AtomicBoolean state;
 
+    /**
+     * @return whether the switch is currently on or off.
+     */
     @Override
     public boolean isOn() {
         return state.get();
     }
 
-    @Override
+    /**
+     * Turn on the switch.
+     */
     public void turnOn() {
         state.setRelease(true);
     }
 
-    @Override
+    /**
+     * Turn off the switch.
+     */
     public void turnOff() {
         state.setRelease(false);
     }
 
-    @Override
+    /**
+     * Reset the switch to its initial state.
+     */
     public void reset() {
         state.setRelease(initialState);
     }

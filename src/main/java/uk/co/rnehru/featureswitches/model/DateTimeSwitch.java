@@ -1,8 +1,9 @@
 package uk.co.rnehru.featureswitches.model;
 
+import uk.co.rnehru.featureswitches.clock.TimeTravel;
+
 import java.time.ZonedDateTime;
 import java.util.concurrent.atomic.AtomicBoolean;
-
 import static java.time.ZonedDateTime.now;
 
 /**
@@ -14,7 +15,6 @@ public final class DateTimeSwitch implements Switch {
     private final AtomicBoolean state;
     private final ZonedDateTime activationDateTime;
 
-
     /** Constructor for DateTimeSwitch
      * @param activationDateTime the ZonedDateTime after which the switch should evaluate to true.
      */
@@ -25,22 +25,8 @@ public final class DateTimeSwitch implements Switch {
 
     @Override
     public boolean isOn() {
-        return state.get();
-    }
-
-    @Override
-    public void turnOn() {
-        this.state.setRelease(true);
-    }
-
-    @Override
-    public void turnOff() {
-        this.state.setRelease(false);
-    }
-
-    @Override
-    public void reset() {
-        this.state.setRelease(activationDateTime.isBefore(now()));
+        this.state.setRelease(TimeTravel.CLOCK.getTime().isAfter(activationDateTime));
+        return this.state.get();
     }
 
     /** Getter for the ZonedDateTime after which the switch should evaluate to true

@@ -8,23 +8,9 @@ package uk.co.rnehru.featureswitches.model;
 public interface Switch {
 
     /** Returns if the current state of the switch is on or off.
-     * @return whether or not the switch currently evaluates to true/false
+     * @return whether the switch currently evaluates to true/false
      */
     boolean isOn();
 
-    /**
-     * Turn on the feature switch, such that isOn() returns true in further evaluation.
-     */
-    void turnOn();
-
-    /**
-     * Turn off the feature switch, such that isOff() returns true in further evaluation.
-     */
-    void turnOff();
-
-    /**
-     * Re-evaluate feature switch based on configuration passed in .conf file.
-     */
-    void reset();
 
 }

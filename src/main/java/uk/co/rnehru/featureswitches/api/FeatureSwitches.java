@@ -1,7 +1,9 @@
 package uk.co.rnehru.featureswitches.api;
 
+import uk.co.rnehru.featureswitches.clock.TimeTravel;
 import uk.co.rnehru.featureswitches.loader.Context;
 import uk.co.rnehru.featureswitches.loader.ContextLoadException;
+import uk.co.rnehru.featureswitches.model.BooleanSwitch;
 import uk.co.rnehru.featureswitches.model.Switch;
 
 
@@ -95,41 +97,18 @@ public final class FeatureSwitches implements Switches {
     }
 
     @Override
-    public void turnAllOn() {
-        turnAllFromContext(Switch::turnOn).accept(defaultContext);
-    }
-
-    @Override
-    public void turnAllOn(String context) {
-        try {
-            turnAllFromContext(Switch::turnOn).accept(loadIfNewContext(context));
-        } catch (ContextLoadException e) {
-            throw new ContextNotFoundException(context, e);
-        }
-    }
-
-    @Override
-    public void turnAllOff() {
-        turnAllFromContext(Switch::turnOff).accept(defaultContext);
-    }
-
-    @Override
-    public void turnAllOff(String context) {
-        try {
-            turnAllFromContext(Switch::turnOff).accept(loadIfNewContext(context));
-        } catch (ContextLoadException e) {
-            throw new ContextNotFoundException(context, e);
-        }
-    }
-
-    @Override
     public void resetAll() {
         resetAll(DEFAULT_CONTEXT_NAME);
     }
 
     @Override
     public void resetAll(String context) {
-        getAllSwitches(context).forEach((key, value) -> value.reset());
+        getAllSwitches(context).forEach((key, value) -> {
+            if(value instanceof BooleanSwitch) {
+                ((BooleanSwitch) value).reset();
+            }
+            TimeTravel.CLOCK.reset();
+        });
     }
 
     private Function<Context, Switch> getSwitchFromContext(String path) {
