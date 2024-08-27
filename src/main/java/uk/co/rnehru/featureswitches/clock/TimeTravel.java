@@ -36,11 +36,29 @@ public enum TimeTravel {
     }
 
     /**
+     * Set the running state of the clock. If running is set to false, the clock will be fixed at the current time.
+     * If running is set to true, the clock will be offset by the difference between the current time and the time set
+     * and will continue to run.
+     * @param running whether the clock should be running or not
+     */
+    public final void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    /**
      * Get the current time of the clock.
      * @return the current time of the clock
      */
     public final ZonedDateTime getTime() {
         return this.time.instant().atZone(this.time.getZone());
+    }
+
+    /**
+     * Get the running state of the clock.
+     * @return the running state of the clock
+     */
+    public final boolean isRunning() {
+        return this.running;
     }
 
     /**
