@@ -18,7 +18,7 @@ public enum TimeTravel {
 
     TimeTravel() {
         this.time = Clock.systemDefaultZone();
-        this.running = false;
+        this.running = true;
     }
 
     /**
