@@ -29,9 +29,11 @@ public enum TimeTravel {
     public final void setTime(ZonedDateTime time, boolean running) {
         if (!running) {
             this.time = Clock.fixed(time.toInstant(), time.getZone());
+            this.running = false;
         } else {
             Duration difference = java.time.Duration.between(ZonedDateTime.now(), time);
             this.time = Clock.offset(Clock.systemDefaultZone(), difference);
+            this.running = true;
         }
     }
 
