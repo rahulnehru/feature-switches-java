@@ -10,13 +10,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class BooleanSwitch implements Switch {
 
     private final boolean initialState;
+    private final String name;
 
     /** Instantiate a new BooleanSwitch object.
      * @param initialState the initial state of whether it should be on or off
      */
-    public BooleanSwitch(final boolean initialState) {
+    public BooleanSwitch(final boolean initialState, final String name) {
         this.initialState = initialState;
         this.state = new AtomicBoolean(initialState);
+        this.name = name;
     }
 
     private final AtomicBoolean state;
@@ -27,6 +29,11 @@ public final class BooleanSwitch implements Switch {
     @Override
     public boolean isOn() {
         return state.get();
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /**

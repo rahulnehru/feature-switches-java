@@ -53,7 +53,7 @@ public final class Context {
                 this.c.switches = new HashMap<>();
                 this.c.contextName = name;
                 Map<String, ConfigValue> configLoader = new ConfigLoader(name).load();
-                configLoader.forEach((key, value) -> c.switches.put(key, convertToSwitch(value)));
+                configLoader.forEach((key, value) -> c.switches.put(key, convertToSwitch(key, value)));
                 return c;
             } catch (ConfigException e) {
                 throw new ContextLoadException(name, e);
@@ -68,21 +68,21 @@ public final class Context {
                 sanitiseString(c).equalsIgnoreCase("true")
                         || sanitiseString(c).equalsIgnoreCase("false");
 
-        private Switch convertToSwitch(final ConfigValue configValue) {
+        private Switch convertToSwitch(final String name, final ConfigValue configValue) {
             String value = configValue.render().strip();
             String type = configValue.valueType().name();
             if (type.equals("BOOLEAN")) {
-                return new BooleanSwitch(Boolean.parseBoolean(value));
+                return new BooleanSwitch(Boolean.parseBoolean(value), name);
             }
             if (type.equals("STRING")) {
                 if (isStringyBoolean.apply(value)) {
-                    return new BooleanSwitch(Boolean.parseBoolean(value));
+                    return new BooleanSwitch(Boolean.parseBoolean(value), name);
                 }
                 // Assume date switch
                 var localDate = ZonedDateTime.parse(sanitiseString(value));
-                return new DateTimeSwitch(localDate);
+                return new DateTimeSwitch(localDate, name);
             }
-            return new BooleanSwitch(false);
+            return new BooleanSwitch(false, name);
         }
 
     }

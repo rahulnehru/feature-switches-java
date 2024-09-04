@@ -12,5 +12,10 @@ public interface Switch {
      */
     boolean isOn();
 
+    /**
+     * Return the name of the switch
+     */
+    String getName();
+
 
 }

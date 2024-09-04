@@ -21,21 +21,23 @@ public class DateTimeSwitchTest {
     private final ZonedDateTime timeInPast = ZonedDateTime.now().minusYears(1);
     private final ZonedDateTime timeInFuture = ZonedDateTime.now().plusYears(1);
 
+    private final String key = "test";
+
     @Test
     void isOnReturnsTrueIfSwitchIsOn() {
-        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInPast);
+        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInPast, key);
         assertTrue(dateTimeSwitch.isOn());
     }
 
     @Test
     void isOnReturnsFalseIfSwitchIsOff() {
-        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInFuture);
+        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInFuture, key);
         assertFalse(dateTimeSwitch.isOn());
     }
 
     @Test
     void isOnReturnsTrueIfSwitchDateIsRunningAndPassesActivationDateTime() throws InterruptedException {
-        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInFuture);
+        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(timeInFuture, key);
         assertFalse(dateTimeSwitch.isOn());
         TimeTravel.CLOCK.setTime(timeInFuture.minusSeconds(2), true);
         assertFalse(dateTimeSwitch.isOn());
@@ -47,7 +49,7 @@ public class DateTimeSwitchTest {
     @Test
     void getActivationDateTimeReturnsZonedDateTimeOfSwitch() {
         ZonedDateTime firstOfJan2020 = ZonedDateTime.of(LocalDate.of(2020, 1, 1), LocalTime.ofSecondOfDay(0), ZoneId.of("UTC"));
-        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(firstOfJan2020);
+        DateTimeSwitch dateTimeSwitch = new DateTimeSwitch(firstOfJan2020, key);
         ZonedDateTime actual = dateTimeSwitch.getActivationDateTime();
         assertEquals(firstOfJan2020, actual);
     }

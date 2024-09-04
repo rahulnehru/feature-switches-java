@@ -14,19 +14,26 @@ public final class DateTimeSwitch implements Switch {
 
     private final AtomicBoolean state;
     private final ZonedDateTime activationDateTime;
+    private final String name;
 
     /** Constructor for DateTimeSwitch
      * @param activationDateTime the ZonedDateTime after which the switch should evaluate to true.
      */
-    public DateTimeSwitch(final ZonedDateTime activationDateTime) {
+    public DateTimeSwitch(final ZonedDateTime activationDateTime, final String name) {
         this.activationDateTime = activationDateTime;
         this.state = new AtomicBoolean(activationDateTime.isBefore(now()));
+        this.name = name;
     }
 
     @Override
     public boolean isOn() {
         this.state.setRelease(TimeTravel.CLOCK.getTime().isAfter(activationDateTime));
         return this.state.get();
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /** Getter for the ZonedDateTime after which the switch should evaluate to true
